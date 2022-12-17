@@ -1,4 +1,11 @@
-//---------------------------------------------- MAX AREA IN HISTOGRAM LOGIC ------------------------------------------ 
+/*  
+
+    We are given an array which indicates the heights of buildings.We have to find the maximum area reactangle in the histogram that we make wit these heights. 
+
+    When we analyze this problem, we will see that for each height, we will see what is the NSL and what is the NSR, we have to stop there. And whatever area is in between is the max area covered by that particular building. 
+
+
+*/
 
 // Method to get NSL index for each item in the array
 const NSL  = (arr) => {
@@ -78,38 +85,9 @@ const MAH = (arr) => {
     return maxArea;
 }
 
-//-------------------------------------------------------------------------------------------
+// An array of heights of buildings
+let arr = [6,2,5,4,5,1,6];
+console.log("Maximum Area in Histogram is: ", MAH(arr))
 
 
-let matrix = [
-    [0,1,1,0],
-    [1,1,1,1],
-    [1,1,1,1],
-    [1,1,0,0]
-];
 
-let histograms = [matrix[0]];
-let prev = histograms[0];
-
-for(let i = 1; i < matrix.length; i++){
-    let histogram = [];
-    for(let j = 0; j < matrix[0].length; j++){
-        if(matrix[i][j] === 0){
-            histogram.push(0)
-        } else{
-            histogram.push(matrix[i][j] + prev[j]);
-        }
-    }
-    histograms.push(histogram);
-    prev = histogram;
-}
-
-let maxArea = 0;
-histograms.forEach(histogram => {
-    let area  = MAH(histogram);
-    if(area > maxArea){
-        maxArea = area;
-    }
-})
-
-console.log("Maximum Rectangular Area in the given matrix is: ", maxArea)
