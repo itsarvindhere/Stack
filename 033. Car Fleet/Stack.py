@@ -1,4 +1,4 @@
-def carFleet(target: int, position, speed):
+def carFleet(target, position, speed):
     # Length of the list(s)
     n = len(position)
         
@@ -20,16 +20,23 @@ def carFleet(target: int, position, speed):
     # Otherwise, it will have to slow down and match the slower car's speed
     # And that will result in a fleet
     # And that fleet will take same time as the slower car takes
-    fleets = []
+    stack = []
+        
+    fleetCount = 0
 
     # We will loop in opposite direction, that is, right to left
     for i in range(n - 1, -1, -1):
-        # If the car on right takes less than to reach destination than current car
-        # It means, there won't be any need to slow down
-        # Hence, this current car is a fleet in its own
-        if not fleets or (fleets and fleets[-1] < time[i]): fleets.append(time[i])
+        # We want to check if there is a Nearest Greater on Right
+        # So, we will first remove all useless values. That is all cars that are faster than current car
+		# That is, all cars that take less time than current car's time to reach the target
+        while stack and stack[-1] < time[i]: stack.pop()
+            
+        # If there is no nearest greater on right, it means this car will start a new fleet
+        if not stack: 
+            stack.append(time[i])
+            fleetCount += 1
 
-    return len(fleets)
+    return fleetCount
 
 target = 12
 position = [10,8,0,5,3]

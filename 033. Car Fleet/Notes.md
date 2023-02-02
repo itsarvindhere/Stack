@@ -63,3 +63,13 @@ But if it does, then there is no need to consider that car because it will be ta
 as the slowest car of the fleet it joins.
 
 And that's why, when we want to push a car to the fleets stack, we can only do it if the car on its right takes less than to reach target.
+
+# USING A STACK
+
+A car joins a fleet on right only if there exists a fleet that takes more time to reach target than current car.
+
+Otherwise, the current car will start a new fleet of its own.
+
+So for each car, we want to find the first car on its right that is slower than it. And that's the simple idea of Nearest Greater on Right.
+
+If there is no slower car on its right, it means, the current car will start a new fleet.
