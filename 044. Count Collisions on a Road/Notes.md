@@ -29,7 +29,7 @@ The collisions that will happen on the road are:
     - 
 Thus, the total number of collisions that will happen on the road is 5. 
 
-# STACK APPROACH
+# STACK APPROACH - O(N) Time & O(N) Space
 
 The code is well commented but still, here is what we are doing -
 
@@ -41,3 +41,31 @@ The code is well commented but still, here is what we are doing -
    
 So we see that points 1 and 2 are the same and the only thing that's different is the initial directions of the two cars and the count by which we have to increment our number of collisions.
 
+
+# WITHOUT STACK APPROACH - O(N) Time & O(1) Space
+
+From the stack approach, what did we understand?
+
+	If a Car is stationary, all the cars moving towards it previously will collide
+	If a car is moving towards left, all the cars moving towards right will collide with it
+	If a car is moving towards left and previous car is stationary, there will be only one collision
+	
+So, do we even need a stack for this? We can easily keep track of how many cars are moving towards right at any time using a simple counter variable.
+
+And similarly, we can use a variable to keep track of what was the previous car's direction.
+
+And that's the idea of the O(1) space approach.
+
+DO note that when current car is moving towards left and previous car is moving towards right, the total number of collisions will be - 
+		
+			Count of cars moving towards right + 1
+			
+Example: If we have "RRRL"
+
+Then, when the last car collides, count will be incremented by "2" and now cars will become stationary.
+
+In other words, the string will now be "RRSS"
+
+This means, the previous cars that were moving towards right will now increment the count of collisions by only 1, not by 2. 
+
+So for this case, total number of collisions -> 2 + 1 + 1 => 4 => (Count of Cars moving towards right + 1)
