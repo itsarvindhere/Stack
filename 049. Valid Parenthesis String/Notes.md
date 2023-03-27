@@ -22,9 +22,10 @@ We greedily try to match the right parenthesis with an opening bracket if there 
 	Why?  Because the "star" is optional to use. 
 	
 	"star" should be a second option when we do not have any opening brackets to match with a current closing bracket.
+	
+The simplest way to think of the solution for this problem is to ignore that we even have a choice to use stars. Just think that we are asked to check if a parenthesis string is valid or not which has only "(" or ")". How will we do that? That is simple right? We will just try to match a closing bracket with an opening bracket if there is one. If not, we can say that this string is not valid.
 
-And so, what we will do is, for each closing bracket, first see if we have an opening bracket available to match with it. If yes, great. 
-If no, then we will try to see if we have any "star" to use as an opening bracket. 
+Now, just add in the "star" option. This just means we have now one extra option to use in case there is no opening bracket to match with a closing bracket. In that case, we can see if we have stars to use as opening brackets.
 
 And this means, we need to keep track of the previous opening brackets & also the previous stars. A stack will be the best data structure in this case. In fact, whenever you see parenthesis related problems, stack is the first thing you should think of.
 
