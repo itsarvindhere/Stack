@@ -1,7 +1,7 @@
 class Solution: 
     # Helper method to get the time at which a car will collide with another car
     def getTime(self, carA, carB):
-        return float((carB[0] - carA[0]) / (carA[1] - carB[1]))
+        return (carB[0] - carA[0]) / (carA[1] - carB[1])
     
     def getCollisionTimes(self, cars):
         # How many cars are there?
