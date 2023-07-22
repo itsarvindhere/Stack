@@ -51,11 +51,11 @@ Well, we cannot. So, we have to try all the possible combinations.
 
 That is, suppose, k = 4 and nums1 = [1,2,3] and nums2 = [1,5,4]
 
-We can either pick 0 numbers from nums1 and 4 numbers from nums2 -> Invalid since length of nums2 is "3"
-We can either pick 1 number from nums1 and 3 numbers from nums2 -> [3] and [1,5,4] will be the best combo
-We can either pick 2 numbers from nums1 and 2 numbers from nums2 -> [2,3] and [5,4] will be the best combo
-We can either pick 3 numbers from nums1 and 1 number from nums2 -> [1,2,3] and [5] will be the best combo
-We can either pick 4 numbers from nums1 and 0 number from nums2 -> Invalid since length of nums1 is "3"
+	Pick 0 numbers from nums1 and 4 numbers from nums2 -> Invalid since length of nums2 is "3"
+	Pick 1 number from nums1 and 3 numbers from nums2 -> [3] and [1,5,4] will be the best combo
+	Pick 2 numbers from nums1 and 2 numbers from nums2 -> [2,3] and [5,4] will be the best combo
+	Pick 3 numbers from nums1 and 1 number from nums2 -> [1,2,3] and [5] will be the best combo
+	Pick 4 numbers from nums1 and 0 number from nums2 -> Invalid since length of nums1 is "3"
 
 Hence, for all the valid cases, we will get two lists and those two lists have to be the most optimal ones. 
 
@@ -63,7 +63,7 @@ That is, if we want to pick "2" numbers from nums1, that subsequence of length 2
 
 Once we get these two lists, now it's time to merge the two together to form one single list of length "k". We have to merge the two such that we generate the maximum possible number by combining the two.
 
-For example, if list1 is [2,3] and list2 is [5,4] the merged result will be [5,4,2,3]
+	For example, if list1 is [2,3] and list2 is [5,4] the merged result will be [5,4,2,3]
 
 But, it is not always the case that we have different numbers in both lists.
 
@@ -71,13 +71,20 @@ We may encounter cases when there are same numbers so we have to choose which on
 
 And for that case, we have to write a separate logic.
 
-Since we want the lexicographically largest subsequence, if we have a case where both pointers are pointing to the same number, we will then compare the values after those pointers to see which subsequence will give us a bigger value first. We will then pick that subsequence.
+Since we want the lexicographically largest subsequence, if we have a case where both pointers are pointing to the same number, we will then compare the values after those pointers to see which subsequence will give us a bigger value first. We will then pick that subsequence. In short, we will pick the lexicographically greater subsequence out of the two.
 
 Let's take an example to understand it - 
 
     Suppose, list1 is [2,1,1,0,2,0] and list2 is [1,1,1,0,2,1]
 
     At first, we will put the item "2" in the merged list as first digit since it is greater than "1" in list2
+	
+	
+	 [2,1,1,0,2,0]
+	    p1
+	 
+	 [1,1,1,0,2,1]
+	  p2
 
     so, after that pointer1 will be at index 1 in list1
     And pointer2 will still be at index 0
@@ -87,21 +94,43 @@ Let's take an example to understand it -
     So, which one to pick and which pointer to increment?
 
     At this point, we have to see which subarray will give us a greater element first.
+	
+	[2,1,1,0,2,0]
+	   i
+	 
+	 [1,1,1,0,2,1]
+	  j
 
-    At pointer1 + 1 index we have element "1"
-    But at pointer2 + 1 as well, we have "1"
+    At i index we have element "1"
+    But at j as well, we have "1"
 
-    So, we increment them.
+    So, we increment both of them since so far, both subsequences the same.
+	
+	[2,1,1,0,2,0]
+	     i
+	 
+	 [1,1,1,0,2,1]
+	    j
+	
+	At i index we have element "1"
+    But at j as well, we have "1"
 
-    Now, At pointer1 + 1 index we have element "0"
-    But at pointer2 + 1, we have "1" 
+    So, we increment both of them since so far, both subsequences the same.
+	
+	[2,1,1,0,2,0]
+	       i
+	 
+	 [1,1,1,0,2,1]
+	      j
+
+    Now, At i index we have element "0"
+    But at j, we have "1" 
 
     This means, the second subarray is lexicographically greater than first one.
 
     So, we will pick element at pointer2 and increment pointer2. 
 
 This situation will come when elements are equal at both pointers.
-
 
 Alright. So, let's say we formed a merged list.
 
