@@ -99,7 +99,7 @@ class Solution:
             # Elements between i (including) and rightBoundary (not including)
             rightCount = rightBoundary - i
             
-            # Time for the left and right parts of the equations
+            # Evaluate the left and right parts of the equations
             leftPart = (leftCount * (prefixOfPrefix[rightBoundary + 1] - prefixOfPrefix[i + 1])) % mod
             rightPart = (rightCount * (prefixOfPrefix[i + 1] - prefixOfPrefix[leftBoundary + 1])) % mod
             

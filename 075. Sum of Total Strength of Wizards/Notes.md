@@ -114,7 +114,7 @@ We will use stack to get the Nearest Smaller on Left & Nearest Smaller on Right 
 	For index = 1, NSL[1] = -1 and NSR[1] = 2
 	
 	What it  means is, all the subarrays formed between indices -1 (not including) and 2 (not including) 
-	which have "3" in them, will have "3" as hte minimum element. That is, [4,3] and [3]
+	which have "3" in them, will have "3" as the minimum element. That is, [4,3] and [3]
 	
 So, that's how we define the boundaries for each element. 
 
